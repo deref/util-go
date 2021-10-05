@@ -15,8 +15,21 @@ func MarshalString(v interface{}) (string, error) {
 	return string(bs), err
 }
 
+func MarshalIndentString(v interface{}) (string, error) {
+	bs, err := json.MarshalIndent(v, "", "  ")
+	return string(bs), err
+}
+
 func MustMarshalString(v interface{}) string {
 	s, err := MarshalString(v)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func MustMarshalIndentString(v interface{}) string {
+	s, err := MarshalIndentString(v)
 	if err != nil {
 		panic(err)
 	}
