@@ -20,6 +20,14 @@ func MarshalIndentString(v interface{}) (string, error) {
 	return string(bs), err
 }
 
+func MustMarshal(v interface{}) []byte {
+	bs, err := json.Marshal(v)
+	if err != nil {
+		panic(err)
+	}
+	return bs
+}
+
 func MustMarshalString(v interface{}) string {
 	s, err := MarshalString(v)
 	if err != nil {
